@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "ODpy8jXX8ph/tZawUodNTck0qTIPFnFrJoVvR9LQxxhhVDQFQIkF9feRhXjr3OWjNsk3awKSG3+fOBQ6J6pqCg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\reEcho0\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mega0\\.nuget\\packages\\htmlagilitypack\\1.11.61\\htmlagilitypack.1.11.61.nupkg.sha512"
+  ],
+  "logs": []
+}
