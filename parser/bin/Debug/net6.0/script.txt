@@ -1,0 +1,256 @@
+
+	function myFunction(x) {
+		x.classList.toggle('change');
+		var burger = $('#burger');
+		var nav = $('#nav-container');
+		var footer = $('#footer');
+		if (burger.hasClass('change')) {
+			burger.prependTo(footer);
+			burger.css('background','#fff');
+			burger.css('border-radius','0 0 0 5px');
+			$('body,html').animate({scrollTop:$(footer).offset().top},0);
+		}
+		else {
+			burger.prependTo(nav);
+			burger.css('background','none');
+			$('body,html').animate({scrollTop:$(nav).offset().top},0);
+		}
+	}
+
+	jQuery(document).ready(function($) {
+		$('.get-search-form span').click(function(){
+			$('#nav-bottom-left, .get-search-form').hide();
+			$('.search-container, .close-search-form').show();
+			$('.search-container').find('input[name=\'s\']').focus();
+		});
+		$('.close-search-form span').click(function(){
+			$('#nav-bottom-left, .get-search-form').show();
+			$('.search-container, .close-search-form').hide();
+		});
+		$('.show-dropdown').click(function(){
+			$('.dropdown-content-right').toggle();
+		});
+	});
+
+	if ($(window).width() < 1200) {
+		var swiper = new Swiper('.nav-new', {
+			slidesPerView: 'auto',
+			freeMode: true,
+		});
+	}
+
+	var data = [
+{ id: 'e2138', text: 'Татарстан', children: [{ id: '824dc', text: 'Альметьевск' },{ id: '21387', text: 'Казань' },{ id: '994c7', text: 'Набережные Челны' },{ id: 'dc838', text: 'Нижнекамск' },] },
+{ id: '4eaa6', text: 'Адыгея', children: [{ id: '61c36', text: 'Адыгея' },] },
+{ id: '7c014', text: 'Алтай', children: [{ id: '2fa03', text: 'Алтай' },] },
+{ id: '68c42', text: 'Алтайский край', children: [{ id: '97fce', text: 'Алтайский край' },] },
+{ id: '4eb91', text: 'Амурская обл.', children: [{ id: 'a2604', text: 'Амурская обл.' },] },
+{ id: 'e668e', text: 'Архангельская обл.', children: [{ id: 'b24f5', text: 'Архангельская обл.' },] },
+{ id: '8b001', text: 'Астраханская обл.', children: [{ id: '9d97c', text: 'Астраханская обл.' },] },
+{ id: 'afb94', text: 'Башкортостан', children: [{ id: 'ceb9b', text: 'Башкортостан' },] },
+{ id: '1d866', text: 'Белгородская обл.', children: [{ id: 'b42af', text: 'Белгородская обл.' },] },
+{ id: '74aa4', text: 'Брянская обл.', children: [{ id: '8c093', text: 'Брянская обл.' },] },
+{ id: '5d0ff', text: 'Бурятия', children: [{ id: '164cb', text: 'Бурятия' },] },
+{ id: '8db04', text: 'Владимирская обл.', children: [{ id: '59c35', text: 'Владимирская обл.' },] },
+{ id: '462e6', text: 'Волгоградская обл.', children: [{ id: '72b95', text: 'Волгоградская обл.' },] },
+{ id: '4c925', text: 'Вологодская обл.', children: [{ id: '5fb76', text: 'Вологодская обл.' },] },
+{ id: '4718e', text: 'Воронежская обл.', children: [{ id: '73490', text: 'Воронежская обл.' },] },
+{ id: 'c8523', text: 'Дагестан', children: [{ id: '9d92d', text: 'Дагестан' },] },
+{ id: 'aeace', text: 'Еврейская АО', children: [{ id: '56414', text: 'Еврейская АО' },] },
+{ id: '59bce', text: 'Забайкальский край', children: [{ id: '8a104', text: 'Забайкальский край' },] },
+{ id: 'c8db4', text: 'Ивановская обл.', children: [{ id: '5ed07', text: 'Ивановская обл.' },] },
+{ id: '5cf4b', text: 'Ингушетия', children: [{ id: '54795', text: 'Ингушетия' },] },
+{ id: '7880f', text: 'Иркутская обл.', children: [{ id: '4bf9d', text: 'Иркутская обл.' },] },
+{ id: 'efc4c', text: 'Кабардино-Балкария', children: [{ id: '78d7e', text: 'Кабардино-Балкария' },] },
+{ id: 'ababb', text: 'Калининградская обл.', children: [{ id: '73608', text: 'Калининградская обл.' },] },
+{ id: '1933a', text: 'Калмыкия', children: [{ id: '5d6e2', text: 'Калмыкия' },] },
+{ id: '27321', text: 'Калужская обл.', children: [{ id: 'b750e', text: 'Калужская обл.' },] },
+{ id: '0be2a', text: 'Камчатский край', children: [{ id: '4e8ad', text: 'Камчатский край' },] },
+{ id: '3f821', text: 'Карачаево-Черкесия', children: [{ id: '9ea65', text: 'Карачаево-Черкесия' },] },
+{ id: '33012', text: 'Карелия', children: [{ id: 'e6c0c', text: 'Карелия' },] },
+{ id: '5f1a7', text: 'Кемеровская обл.', children: [{ id: '674d4', text: 'Кемеровская обл.' },] },
+{ id: '428d1', text: 'Кировская обл.', children: [{ id: '95508', text: 'Кировская обл.' },] },
+{ id: 'ce23c', text: 'Коми', children: [{ id: 'a5c59', text: 'Коми' },] },
+{ id: 'b140b', text: 'Костромская обл.', children: [{ id: '47173', text: 'Костромская обл.' },] },
+{ id: '5c9ab', text: 'Краснодарский край', children: [{ id: '0c270', text: 'Краснодарский край' },] },
+{ id: '6cb80', text: 'Красноярский край', children: [{ id: '976a6', text: 'Красноярский край' },] },
+{ id: '8e0e1', text: 'Крым', children: [{ id: '0fb3d', text: 'Крым' },] },
+{ id: '5af0d', text: 'Курганская обл.', children: [{ id: 'ec9f7', text: 'Курганская обл.' },] },
+{ id: '6443c', text: 'Курская обл.', children: [{ id: '4edc6', text: 'Курская обл.' },] },
+{ id: '64939', text: 'Ленинградская обл.', children: [{ id: '5573d', text: 'Ленинградская обл.' },] },
+{ id: '19ade', text: 'Липецкая обл.', children: [{ id: '3e4f4', text: 'Липецкая обл.' },] },
+{ id: 'fa0e2', text: 'Магаданская обл.', children: [{ id: 'fa12c', text: 'Магаданская обл.' },] },
+{ id: 'd1feb', text: 'Марий Эл', children: [{ id: 'bc75e', text: 'Марий Эл' },] },
+{ id: 'd04ac', text: 'Мордовия', children: [{ id: '6a3c6', text: 'Мордовия' },] },
+{ id: 'e6eb3', text: 'Москва', children: [{ id: 'cf589', text: 'Москва' },] },
+{ id: '687a3', text: 'Московская обл.', children: [{ id: 'eb8fa', text: 'Московская обл.' },] },
+{ id: '65543', text: 'Мурманская обл.', children: [{ id: '5340c', text: 'Мурманская обл.' },] },
+{ id: '6145a', text: 'Ненецкий АО', children: [{ id: 'b2f5b', text: 'Ненецкий АО' },] },
+{ id: '86d45', text: 'Нижегородская обл.', children: [{ id: '6b902', text: 'Нижегородская обл.' },] },
+{ id: '3f114', text: 'Новгородская обл.', children: [{ id: '7e960', text: 'Новгородская обл.' },] },
+{ id: 'ed059', text: 'Новосибирская обл.', children: [{ id: '0dbf5', text: 'Новосибирская обл.' },] },
+{ id: '6e063', text: 'Омская обл.', children: [{ id: '5d085', text: 'Омская обл.' },] },
+{ id: '98f9b', text: 'Оренбургская обл.', children: [{ id: '06bd9', text: 'Оренбургская обл.' },] },
+{ id: '50155', text: 'Орловская обл.', children: [{ id: '28ad1', text: 'Орловская обл.' },] },
+{ id: '5de26', text: 'Пензенская обл.', children: [{ id: 'bf92b', text: 'Пензенская обл.' },] },
+{ id: '2a274', text: 'Пермский край', children: [{ id: 'fb568', text: 'Пермский край' },] },
+{ id: 'd7d6b', text: 'Приморский край', children: [{ id: 'cfbb8', text: 'Приморский край' },] },
+{ id: '55572', text: 'Псковская обл.', children: [{ id: 'dce2c', text: 'Псковская обл.' },] },
+{ id: '5521d', text: 'Ростовская обл.', children: [{ id: '66125', text: 'Ростовская обл.' },] },
+{ id: 'c8181', text: 'Рязанская обл.', children: [{ id: '03c7b', text: 'Рязанская обл.' },] },
+{ id: '3ee2c', text: 'Самарская обл.', children: [{ id: '669c3', text: 'Самарская обл.' },] },
+{ id: '58f29', text: 'Санкт-Петербург', children: [{ id: '0df45', text: 'Санкт-Петербург' },] },
+{ id: '4b7c3', text: 'Саратовская обл.', children: [{ id: '6ccfc', text: 'Саратовская обл.' },] },
+{ id: 'ed0a1', text: 'Саха', children: [{ id: '9180f', text: 'Саха' },] },
+{ id: '634b7', text: 'Сахалинская обл.', children: [{ id: '5d235', text: 'Сахалинская обл.' },] },
+{ id: 'c13c9', text: 'Свердловская обл.', children: [{ id: 'd00d4', text: 'Свердловская обл.' },] },
+{ id: 'be6f4', text: 'Севастополь', children: [{ id: '8d264', text: 'Севастополь' },] },
+{ id: '0cb4c', text: 'Северная Осетия', children: [{ id: '82516', text: 'Северная Осетия' },] },
+{ id: 'e3bd5', text: 'Смоленская обл.', children: [{ id: '2e05f', text: 'Смоленская обл.' },] },
+{ id: 'ec972', text: 'Ставропольский край', children: [{ id: 'd05a9', text: 'Ставропольский край' },] },
+{ id: 'd94c3', text: 'Тамбовская обл.', children: [{ id: 'b8c72', text: 'Тамбовская обл.' },] },
+{ id: '492e0', text: 'Тверская обл.', children: [{ id: '8fdbf', text: 'Тверская обл.' },] },
+{ id: 'ec9cc', text: 'Томская обл.', children: [{ id: '5e4ed', text: 'Томская обл.' },] },
+{ id: 'd0e13', text: 'Тульская обл.', children: [{ id: '6095d', text: 'Тульская обл.' },] },
+{ id: 'f22bd', text: 'Тыва', children: [{ id: 'e2075', text: 'Тыва' },] },
+{ id: 'dc822', text: 'Тюменская обл.', children: [{ id: '5150c', text: 'Тюменская обл.' },] },
+{ id: 'dec8d', text: 'Удмуртия', children: [{ id: '5bc99', text: 'Удмуртия' },] },
+{ id: '0fdd1', text: 'Ульяновская обл.', children: [{ id: '519f7', text: 'Ульяновская обл.' },] },
+{ id: 'af942', text: 'Хабаровский край', children: [{ id: 'fb027', text: 'Хабаровский край' },] },
+{ id: '8873c', text: 'Хакасия', children: [{ id: '6bbf1', text: 'Хакасия' },] },
+{ id: '667d8', text: 'Ханты-Мансийский АО', children: [{ id: 'fcaf5', text: 'Ханты-Мансийский АО' },] },
+{ id: 'edc3d', text: 'Челябинская обл.', children: [{ id: '1ffce', text: 'Челябинская обл.' },] },
+{ id: 'd8c45', text: 'Чечня', children: [{ id: '91e77', text: 'Чечня' },] },
+{ id: 'c863b', text: 'Чувашия', children: [{ id: 'c921a', text: 'Чувашия' },] },
+{ id: 'b500b', text: 'Чукотский АО', children: [{ id: '243fa', text: 'Чукотский АО' },] },
+{ id: 'ca096', text: 'Ямало-Ненецкий АО', children: [{ id: '0d5cf', text: 'Ямало-Ненецкий АО' },] },
+{ id: '3c00b', text: 'Ярославская обл.', children: [{ id: '7235f', text: 'Ярославская обл.' },] },
+
+	];
+	$('#find-city').select2({
+		data: data
+	});
+
+	$(document).ready(function() {
+		$('#find-city').select2({
+			placeholder: 'найти в своем городе',
+			allowClear: true,
+			'language': 'ru',
+		});
+	});
+
+	$(function() {
+		$('#find-city').change(function() {
+			$('.fo-block').hide();
+			$('#' + $(this).val()).show();
+		});
+	});
+
+	jQuery(document).ready(function($) {
+		$('.some-block-nav div').click(function(){
+			$(this).removeClass('show-no-link');
+			$(this).siblings().addClass('show-no-link');
+			$('#' + $(this).attr('data-id')).show();
+			$(this).siblings().each(function() {
+				$('#' + $(this).attr('data-id')).hide();
+			});
+		});
+	});
+
+	jQuery(document).ready(function($) {
+		function kpvDoAJAX_init() {
+			if (typeof jQuery === 'undefined') {
+				setTimeout(kpvDoAJAX_init, 500);
+				return;
+			}
+
+			setTimeout(function () {
+				jQuery.post('/wp-content/plugins/getter-views.php', {
+					id: '856859',
+				});
+			}, 2000);
+		}
+		kpvDoAJAX_init();
+	});
+
+	$(function() {
+		$('.ch-block').appear();
+		$(document.body).on('appear', '.ch-block', function(e, $affected) {
+			var id = $(this).attr('id');
+			var li = $('#w-chapter .ch-'+id);
+			$(li).addClass('li-sidebar-appeared');
+			$('.ch-li').not(li).removeClass('li-sidebar-appeared');
+		});
+		$(document.body).on('disappear', '.ch-block', function(e, $affected) {
+			var id = $(this).attr('id');
+			var li = $('#w-chapter .ch-'+id);
+			$(li).removeClass('li-sidebar-appeared');
+		});
+		$('.ch-li').click(function(){
+			var id = $(this).attr('data-id');
+			$('#'+id).addClass('block-appeared');
+			$('.ch-block').not('#'+id).removeClass('block-appeared');
+		});
+	});
+
+	jQuery(document).ready(function($) {
+		$('#win-open, #win-back').click(function(e) {
+			e.preventDefault();
+			$('#win-2').hide();
+			$('#win-1').show();
+			$('#win-center').show();
+		});
+		$('#win-close').click(function() {
+			$('#win-center').hide();
+		});
+		$('#win-box').submit(function() {
+			var str = $(this).serialize() + '&link=' + $(location).attr('href');
+			$.ajax({
+				type: 'POST',
+				url: '/wp-content/plugins/contacts.php',
+				data: str,
+				success: function(msg) {
+					$('#win-1').hide();
+					if (msg == 'ok') {
+						$('#win-output').html('<div><div><strong>Спасибо</strong></div><div>Сообщение успешно отправлено.</div></div>');
+						$('#win-back').hide();
+						$('#win-box')[0].reset();
+					}
+					else {
+						$('#win-output').html('<div><div><strong>Ошибка</strong></div><div>Сообщение не отправлено. Убедитесь в правильности заполнения полей.</div></div>');
+					}
+					$('#win-2').show();
+				}
+			});
+			return false;
+		});
+	});
+
+	Highcharts.chart('container-ru-stats', {
+		chart: { type: 'line', },
+		title: { text: 'Естественный прирост/убыль населения в Татарстане по годам', },
+		xAxis: [ { categories: ['2015','2016','2017','2018','2019','2020','2021','2022','2023','2024, март'], crosshair: true } ],
+		yAxis: [
+			{ title: { text: '', }, },
+			{ title: { text: '', }, opposite: true, },
+		],
+		series: [
+			{ name: 'Прирост/убыль, чел.', type: 'column', yAxis: 1, data: [10416,10959,4158,1600,180,-12678,-19365,-8133,-6347,-3582], },{ name: 'Родилось, чел.', type: 'column', yAxis: 1, data: [56899,55853,48115,46320,42871,41598,40936,36651,36497,8284], },{ name: 'Умерло, чел.', type: 'column', yAxis: 1, data: [46483,44894,43957,44720,42691,54276,60301,44784,42844,11866], },
+			
+		],
+	});
+
+	$(function() {
+		$('#m-table').tablesorter();
+	});
+
+	$("#show-respond-button").click(function() {
+		$(this).hide();
+		$("#respond-respond").show();
+	});
+
+	if ($(window).width() > 840) {
+		$('#secondary').css('height',$('#primary').height());
+	}
+
+	

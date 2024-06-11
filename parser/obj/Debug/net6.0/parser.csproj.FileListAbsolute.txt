@@ -1,0 +1,17 @@
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\parser.exe
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\parser.deps.json
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\parser.runtimeconfig.json
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\parser.dll
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\parser.pdb
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.csproj.AssemblyReference.cache
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.AssemblyInfoInputs.cache
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.AssemblyInfo.cs
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.csproj.CoreCompileInputs.cache
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.csproj.CopyComplete
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.dll
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\refint\parser.dll
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.pdb
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.genruntimeconfig.cache
+C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\ref\parser.dll
