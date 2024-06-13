@@ -73,24 +73,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mega0\\.nuget\\packages\\": {},
-    "D:\\vs\\shared\\NuGetPackages": {}
+    "C:\\Users\\эхо\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser.csproj",
+      "projectUniqueName": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
       "projectName": "parser",
-      "projectPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser.csproj",
-      "packagesPath": "C:\\Users\\mega0\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\obj\\",
+      "projectPath": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+      "packagesPath": "C:\\Users\\эхо\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\vs\\shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mega0\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\эхо\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -98,7 +93,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -111,6 +105,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -133,12 +132,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.30, 6.0.30]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

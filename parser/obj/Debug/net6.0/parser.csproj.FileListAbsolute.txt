@@ -15,3 +15,21 @@ C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debu
 C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.pdb
 C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\parser.genruntimeconfig.cache
 C:\Users\mega0\OneDrive\Рабочий стол\практика\parser\obj\Debug\net6.0\ref\parser.dll
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\parser.exe
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\parser.deps.json
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\parser.runtimeconfig.json
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\parser.dll
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\parser.pdb
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.csproj.AssemblyReference.cache
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.AssemblyInfoInputs.cache
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.AssemblyInfo.cs
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.csproj.CoreCompileInputs.cache
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.sourcelink.json
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.csproj.Up2Date
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.dll
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\refint\parser.dll
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.pdb
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\parser.genruntimeconfig.cache
+C:\Users\эхо\Source\Repos\demographic_database_of_Tatarstan\parser\obj\Debug\net6.0\ref\parser.dll
