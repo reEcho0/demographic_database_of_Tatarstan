@@ -1,14 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "jhBqScDcn7g=",
+  "dgSpecHash": "KSZiFjyfL+sm8xRveSvgFQQgyITETKnt70l7uQYaI/yr51TVnlZ609Qz0ttHj4yfKWRtzZZ3Y0vkcZtP7j29sQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+  "projectFilePath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\эхо\\.nuget\\packages\\htmlagilitypack\\1.11.61\\htmlagilitypack.1.11.61.nupkg.sha512",
-    "C:\\Users\\эхо\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.30\\microsoft.windowsdesktop.app.ref.6.0.30.nupkg.sha512",
-    "C:\\Users\\эхо\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.30\\microsoft.netcore.app.ref.6.0.30.nupkg.sha512",
-    "C:\\Users\\эхо\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.30\\microsoft.aspnetcore.app.ref.6.0.30.nupkg.sha512",
-    "C:\\Users\\эхо\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.30\\microsoft.netcore.app.host.win-x64.6.0.30.nupkg.sha512"
+    "C:\\Users\\mega0\\.nuget\\packages\\bouncycastle.cryptography\\2.4.0\\bouncycastle.cryptography.2.4.0.nupkg.sha512",
+    "C:\\Users\\mega0\\.nuget\\packages\\htmlagilitypack\\1.11.61\\htmlagilitypack.1.11.61.nupkg.sha512",
+    "C:\\Users\\mega0\\.nuget\\packages\\itextsharp\\5.5.13.4\\itextsharp.5.5.13.4.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"iTextSharp 5.5.13.4\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "iTextSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

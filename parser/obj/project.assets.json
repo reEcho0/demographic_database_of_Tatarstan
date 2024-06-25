@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "BouncyCastle.Cryptography/2.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/BouncyCastle.Cryptography.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "HtmlAgilityPack/1.11.61": {
         "type": "package",
         "compile": {
@@ -14,10 +27,42 @@
             "related": ".deps.json;.pdb;.xml"
           }
         }
+      },
+      "iTextSharp/5.5.13.4": {
+        "type": "package",
+        "dependencies": {
+          "BouncyCastle.Cryptography": "2.4.0"
+        },
+        "compile": {
+          "lib/net461/itextsharp.dll": {}
+        },
+        "runtime": {
+          "lib/net461/itextsharp.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "BouncyCastle.Cryptography/2.4.0": {
+      "sha512": "SwXsAV3sMvAU/Nn31pbjhWurYSjJ+/giI/0n6tCrYoupEK34iIHCuk3STAd9fx8yudM85KkLSVdn951vTng/vQ==",
+      "type": "package",
+      "path": "bouncycastle.cryptography/2.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "README.md",
+        "bouncycastle.cryptography.2.4.0.nupkg.sha512",
+        "bouncycastle.cryptography.nuspec",
+        "lib/net461/BouncyCastle.Cryptography.dll",
+        "lib/net461/BouncyCastle.Cryptography.xml",
+        "lib/net6.0/BouncyCastle.Cryptography.dll",
+        "lib/net6.0/BouncyCastle.Cryptography.xml",
+        "lib/netstandard2.0/BouncyCastle.Cryptography.dll",
+        "lib/netstandard2.0/BouncyCastle.Cryptography.xml",
+        "packageIcon.png"
+      ]
+    },
     "HtmlAgilityPack/1.11.61": {
       "sha512": "hqZASeEFHS9quHvfZSwaULoAJLWkOYVPiQjc3P9J4pQS8vSYzrP3bxe04Vm7vYYuxwbQhq9hCSVvZVLTyRaNaQ==",
       "type": "package",
@@ -65,27 +110,49 @@
         "lib/uap10.0/HtmlAgilityPack.pdb",
         "lib/uap10.0/HtmlAgilityPack.pri"
       ]
+    },
+    "iTextSharp/5.5.13.4": {
+      "sha512": "/cvCNv8AJ+XuD99u4NfHSSxkBJKTdvP36wcfQF9V1Cjzi1ycyFSa4vJ64a3DhFVUTKVO60WF8OmAqngQDTHgYA==",
+      "type": "package",
+      "path": "itextsharp/5.5.13.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "gnu-agpl-v3.0.md",
+        "itextsharp.5.5.13.4.nupkg.sha512",
+        "itextsharp.nuspec",
+        "lib/net461/iTextSharp.xml",
+        "lib/net461/itextsharp.dll",
+        "notice.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "HtmlAgilityPack >= 1.11.61"
+      "HtmlAgilityPack >= 1.11.61",
+      "iTextSharp >= 5.5.13.4"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\эхо\\.nuget\\packages\\": {}
+    "C:\\Users\\mega0\\.nuget\\packages\\": {},
+    "D:\\vs\\shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+      "projectUniqueName": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj",
       "projectName": "parser",
-      "projectPath": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
-      "packagesPath": "C:\\Users\\эхо\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\эхо\\Source\\Repos\\demographic_database_of_Tatarstan\\parser\\obj\\",
+      "projectPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj",
+      "packagesPath": "C:\\Users\\mega0\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\vs\\shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\эхо\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mega0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -93,6 +160,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -105,11 +173,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -119,6 +182,10 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.61, )"
+          },
+          "iTextSharp": {
+            "target": "Package",
+            "version": "[5.5.13.4, )"
           }
         },
         "imports": [
@@ -132,31 +199,25 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.30, 6.0.30]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.30, 6.0.30]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.30, 6.0.30]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.30, 6.0.30]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Пакет \"iTextSharp 5.5.13.4\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "libraryId": "iTextSharp",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }
