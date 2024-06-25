@@ -2,12 +2,30 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using iTextSharp;
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 
 namespace Praktika
 {
     class Parser
     {
         static void Main()
+        {
+            PdfReader pdf = new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf");
+            string text = "";
+            for (var i = 1; i <= pdf.NumberOfPages; ++i )
+            {
+                SimpleTextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+                text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
+            }
+            pdf.Close();
+            //var demographics = text.Substring(text.LastIndexOf("IV. ДЕМОГРАФИЯ"), text.IndexOf("Показатели помесячной") - text.LastIndexOf("ДЕМОГРАФИЯ"));
+            //Console.WriteLine(demographics);
+            var migration = text.Substring(text.IndexOf("Миграция населения"),text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
+            Console.WriteLine(migration);
+        }
+        static void ParseHTML()
         {
             // Загрузите HTML-документ из файла или URL-адреса
             var htmlDocument = new HtmlWeb().Load("https://gogov.ru/natural-increase/rt");
@@ -67,5 +85,3 @@ namespace Praktika
         }
     }
 }
-
-
