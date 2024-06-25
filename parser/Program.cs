@@ -12,18 +12,25 @@ namespace Praktika
     {
         static void Main()
         {
-            PdfReader pdf = new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf");
-            string text = "";
-            for (var i = 1; i <= pdf.NumberOfPages; ++i )
+            //PdfReader pdf1 = new PdfReader("доклад 2019-2018.pdf");
+            //PdfReader pdf2 = new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf");
+            PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2019-2018.pdf"),
+                new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf") };
+            foreach (PdfReader pdf in arr_pdf)
             {
-                SimpleTextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-                text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
+                Console.WriteLine(pdf.GetNamedDestinationFromStrings());
+                string text = "";
+                for (var i = 1; i <= pdf.NumberOfPages; ++i)
+                {
+                    SimpleTextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+                    text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
+                }
+                pdf.Close();
+                var demographics = text.Substring(text.LastIndexOf("IV. ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
+                Console.WriteLine(demographics);
+                //var migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
+                //Console.WriteLine(migration);
             }
-            pdf.Close();
-            //var demographics = text.Substring(text.LastIndexOf("IV. ДЕМОГРАФИЯ"), text.IndexOf("Показатели помесячной") - text.LastIndexOf("ДЕМОГРАФИЯ"));
-            //Console.WriteLine(demographics);
-            var migration = text.Substring(text.IndexOf("Миграция населения"),text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
-            Console.WriteLine(migration);
         }
         static void ParseHTML()
         {
