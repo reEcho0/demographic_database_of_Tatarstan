@@ -12,13 +12,10 @@ namespace Praktika
     {
         static void Main()
         {
-            //PdfReader pdf1 = new PdfReader("доклад 2019-2018.pdf");
-            //PdfReader pdf2 = new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf");
             PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2019-2018.pdf"),
                 new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf") };
             foreach (PdfReader pdf in arr_pdf)
             {
-                Console.WriteLine(pdf.GetNamedDestinationFromStrings());
                 string text = "";
                 for (var i = 1; i <= pdf.NumberOfPages; ++i)
                 {
@@ -26,10 +23,24 @@ namespace Praktika
                     text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
                 }
                 pdf.Close();
-                var demographics = text.Substring(text.LastIndexOf("IV. ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
-                Console.WriteLine(demographics);
-                //var migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
-                //Console.WriteLine(migration);
+                var demographics = text.Substring(text.LastIndexOf("ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
+                //Console.WriteLine(demographics + "\n
+                List<string> demographics_split = new List<string>(demographics.Split('\n', StringSplitOptions.RemoveEmptyEntries));
+                demographics_split.RemoveAll(string.IsNullOrWhiteSpace);
+                //var years = new Regex(@"г\.", RegexOptions.Compiled).Replace(demographics_split[4], "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                
+                //var born = demographics_split[10].Split(' ', 4).SkipLast(1);
+                
+                //var died = demographics_split[11].Split(' ', 4).SkipLast(1);
+                
+                var migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
+                List<string> migration_split = new List<string>(migration.Split('\n', StringSplitOptions.RemoveEmptyEntries));
+                migration_split.RemoveAll(string.IsNullOrWhiteSpace);
+
+                for (var i = 0; i < migration_split.Count; i++)
+                {
+                    Console.WriteLine(i + "\t" + migration_split[i]);
+                }
             }
         }
         static void ParseHTML()
@@ -89,6 +100,19 @@ namespace Praktika
                     Console.WriteLine();
                 }
             }
+        }
+    }
+
+    class Demographics
+    {
+        public int Year { get; set; }
+        public int Born { get; set; }
+        public int Died { get; set; }
+        public Demographics(int year, int born, int died)
+        {
+            Year = year;
+            Born = born;
+            Died = died;
         }
     }
 }
