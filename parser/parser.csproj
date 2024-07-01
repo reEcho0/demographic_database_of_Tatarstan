@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.61" />
     <PackageReference Include="iTextSharp" Version="5.5.13.4" />
+    <PackageReference Include="Supabase" Version="1.0.4" />
   </ItemGroup>
 
 </Project>

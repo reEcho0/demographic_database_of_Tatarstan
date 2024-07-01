@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using iTextSharp;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
+using Supabase;
 
 namespace Praktika
 {
@@ -12,10 +13,29 @@ namespace Praktika
     {
         static void Main()
         {
-            PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2019-2018.pdf"),
-                new PdfReader("C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\доклад 2021-2020.pdf") };
+            ConnectDB();
+        }
+        static async void ConnectDB()
+        {
+            var url = Environment.GetEnvironmentVariable("https://hljapwtpzmqjovchyylz.supabase.co");
+            var key = Environment.GetEnvironmentVariable("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsamFwd3Rwem1xam92Y2h5eWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1NzMwMjksImV4cCI6MjAzNTE0OTAyOX0._I4a8CradEGzeMN7Lq_KWbDeayDbaCq0Ru2AoUQuHx0");
+            var options = new Supabase.SupabaseOptions
+            {
+                AutoConnectRealtime = true
+            };
+            var supabase = new Supabase.Client(url,key,options);
+            await supabase.InitializeAsync();
+            Console.WriteLine(supabase.Auth.CurrentSession);
+        }
+        public static void ParserPDF()
+        {   
+            //список старых отчетов о демографии (и не только) в Татарстане
+            PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2019-2018.pdf"),
+                new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2021-2020.pdf") };
+            //перебор списка
             foreach (PdfReader pdf in arr_pdf)
             {
+                //преобразование из пдф в строку
                 string text = "";
                 for (var i = 1; i <= pdf.NumberOfPages; ++i)
                 {
@@ -23,23 +43,39 @@ namespace Praktika
                     text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
                 }
                 pdf.Close();
-                var demographics = text.Substring(text.LastIndexOf("ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
-                //Console.WriteLine(demographics + "\n
+                //получение из отчета данных о рождаемости и смертности
+                string demographics = text.Substring(text.LastIndexOf("ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
                 List<string> demographics_split = new List<string>(demographics.Split('\n', StringSplitOptions.RemoveEmptyEntries));
                 demographics_split.RemoveAll(string.IsNullOrWhiteSpace);
-                //var years = new Regex(@"г\.", RegexOptions.Compiled).Replace(demographics_split[4], "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                
-                //var born = demographics_split[10].Split(' ', 4).SkipLast(1);
-                
-                //var died = demographics_split[11].Split(' ', 4).SkipLast(1);
-                
-                var migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
-                List<string> migration_split = new List<string>(migration.Split('\n', StringSplitOptions.RemoveEmptyEntries));
+                //сами данные год, родилось, умеро (используются списки, ибо в отчетах данные за 2 года)
+                string[] years = new Regex(@"г\.", RegexOptions.Compiled).Replace(demographics_split[4], "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                List<string> list_born = new List<string>(demographics_split[10].Split(' ', 4).SkipLast(1).Skip(1));
+                List<string> list_died = new List<string>(demographics_split[11].Split(' ', 4).SkipLast(1).Skip(1));
+                //получение данных об миграции
+                string migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
+                List<string> migration_split = new List<string>(migration.Split(new char[] { '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
                 migration_split.RemoveAll(string.IsNullOrWhiteSpace);
-
+                //костыль не забыть убрать
+                /**/migration_split.Remove("1)");/**/
+                //костыль не забыть убрать
+                //убираем все слова и уменьшаем размер списка
                 for (var i = 0; i < migration_split.Count; i++)
                 {
-                    Console.WriteLine(i + "\t" + migration_split[i]);
+                    migration_split[i] = new Regex(@"([а-я])|(\s{2,})", RegexOptions.IgnoreCase).Replace(migration_split[i], "");
+                }
+                migration_split.RemoveAll(string.IsNullOrWhiteSpace);
+                //данные о прибывших и уехавших из региона (удаляем второе и четвертое значение, поскольку там данные в расчете на 1000 чел.)
+                List<string> list_arrival = new List<string>(migration_split[5].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
+                list_arrival.RemoveAt(1);
+                List<string> list_departure = new List<string>( migration_split[6].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
+                list_departure.RemoveAt(1);
+                for (var i = 0; i < 2; i++) 
+                {
+                    Console.WriteLine(new string('-',30));
+                    Console.WriteLine($"year\tborn\tdied\tarrival\tdepartures");
+                    Console.WriteLine(new string('-', 30));
+                    Console.WriteLine($"{years[i]}\t{list_born[i]}\t{list_died[i]}\t{list_arrival[i]}\t{list_departure[i]}");
+                    Console.WriteLine(new string('-', 30));
                 }
             }
         }

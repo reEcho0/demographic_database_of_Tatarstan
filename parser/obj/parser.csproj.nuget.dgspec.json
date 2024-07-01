@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj": {}
+    "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj": {
+    "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj",
+        "projectUniqueName": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
         "projectName": "parser",
-        "projectPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\parser.csproj",
-        "packagesPath": "C:\\Users\\mega0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mega0\\OneDrive\\Рабочий стол\\практика\\parser\\parser\\obj\\",
+        "projectPath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+        "packagesPath": "C:\\Users\\эхо\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\vs\\shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\mega0\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\эхо\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -48,6 +48,10 @@
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.61, )"
+            },
+            "Supabase": {
+              "target": "Package",
+              "version": "[1.0.4, )"
             },
             "iTextSharp": {
               "target": "Package",
@@ -70,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
