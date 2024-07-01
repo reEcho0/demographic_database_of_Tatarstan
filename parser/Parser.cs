@@ -1,11 +1,9 @@
 ﻿using HtmlAgilityPack;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using iTextSharp;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
-using Supabase;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+using System.Text.RegularExpressions;
 
 namespace Praktika
 {
@@ -13,22 +11,36 @@ namespace Praktika
     {
         static void Main()
         {
-            ConnectDB();
+            //ConnectDB();
         }
+
         static async void ConnectDB()
         {
-            var url = Environment.GetEnvironmentVariable("https://hljapwtpzmqjovchyylz.supabase.co");
-            var key = Environment.GetEnvironmentVariable("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsamFwd3Rwem1xam92Y2h5eWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1NzMwMjksImV4cCI6MjAzNTE0OTAyOX0._I4a8CradEGzeMN7Lq_KWbDeayDbaCq0Ru2AoUQuHx0");
+            Environment.SetEnvironmentVariable("URL", "https://hljapwtpzmqjovchyylz.supabase.co");
+            Environment.SetEnvironmentVariable("KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsamFwd3Rwem1xam92Y2h5eWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1NzMwMjksImV4cCI6MjAzNTE0OTAyOX0._I4a8CradEGzeMN7Lq_KWbDeayDbaCq0Ru2AoUQuHx0");
+            var url = Environment.GetEnvironmentVariable("URL");
+            var key = Environment.GetEnvironmentVariable("KEY");
             var options = new Supabase.SupabaseOptions
             {
                 AutoConnectRealtime = true
             };
             var supabase = new Supabase.Client(url,key,options);
             await supabase.InitializeAsync();
-            Console.WriteLine(supabase.Auth.CurrentSession);
+            //var data = new List<Demographics>();
+            //var rows = ParserPDF();
+            //Console.WriteLine(rows.Count);
+            //foreach (var row in rows)
+            //{
+            //    Console.WriteLine("Connect and insert");
+            //    data.Add(new Demographics { Year = row[0], Born = row[1], Died = row[2], Arrival = row[3], Departure = row[4] });
+            //    Console.WriteLine($"Year = {row[0]}, Born = {row[1]}, Died = {row[2]}, Arrival = {row[3]}, Departure = {row[4]}");
+            //}
+            //await supabase.From<Demographics>().Insert(data);
         }
+
         public static void ParserPDF()
-        {   
+        {
+            List<List<int>> rows = new List<List<int>>();
             //список старых отчетов о демографии (и не только) в Татарстане
             PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2019-2018.pdf"),
                 new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2021-2020.pdf") };
@@ -69,16 +81,23 @@ namespace Praktika
                 list_arrival.RemoveAt(1);
                 List<string> list_departure = new List<string>( migration_split[6].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
                 list_departure.RemoveAt(1);
+                List<int> row_data = new List<int>();
+                //возможно проблема в конверте
                 for (var i = 0; i < 2; i++) 
                 {
-                    Console.WriteLine(new string('-',30));
-                    Console.WriteLine($"year\tborn\tdied\tarrival\tdepartures");
-                    Console.WriteLine(new string('-', 30));
-                    Console.WriteLine($"{years[i]}\t{list_born[i]}\t{list_died[i]}\t{list_arrival[i]}\t{list_departure[i]}");
-                    Console.WriteLine(new string('-', 30));
+                    row_data.AddRange(new int[] { Convert.ToInt32(years[i]),
+                        Convert.ToInt32(list_born[i]), Convert.ToInt32(list_died[i]),
+                        Convert.ToInt32(list_arrival[i]), Convert.ToInt32(list_died[i]) });
                 }
+                rows.Add(row_data);
             }
+            foreach (var row in rows) 
+            {
+                Console.WriteLine($"Year = {row[0]}, Born = {row[1]}, Died = {row[2]}, Arrival = {row[3]}, Departure = {row[4]}");
+            }
+            //return rows;
         }
+
         static void ParseHTML()
         {
             // Загрузите HTML-документ из файла или URL-адреса
@@ -139,16 +158,22 @@ namespace Praktika
         }
     }
 
-    class Demographics
+    [Supabase.Postgrest.Attributes.Table("Demographics")]
+    class Demographics : BaseModel
     {
+        [PrimaryKey("Year")]
         public int Year { get; set; }
+
+        [Supabase.Postgrest.Attributes.Column("Born")]
         public int Born { get; set; }
+
+        [Supabase.Postgrest.Attributes.Column("Died")]
         public int Died { get; set; }
-        public Demographics(int year, int born, int died)
-        {
-            Year = year;
-            Born = born;
-            Died = died;
-        }
+
+        [Supabase.Postgrest.Attributes.Column("Arrival")]
+        public int Arrival {  get; set; }
+
+        [Supabase.Postgrest.Attributes.Column("Departure")]
+        public int Departure {  get; set; }
     }
 }
