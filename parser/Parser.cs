@@ -1,44 +1,107 @@
 ﻿using HtmlAgilityPack;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
-using Supabase.Postgrest.Attributes;
-using Supabase.Postgrest.Models;
+//using Supabase.Postgrest.Attributes;
+//using Supabase.Postgrest.Models;
 using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using Npgsql;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+
 
 namespace Praktika
 {
-    class Parser
+    class Parser 
     {
-        static void Main()
+        public static void Main()
         {
-            //ConnectDB();
+            Parser parser = new Parser();
+            //parser.AsyncConnectAndAdd();
+            parser.ConnectAndAdd();
         }
+        /*попытка реализовать соединение и запись в асинхронноме режиме*/ 
 
-        static async void ConnectDB()
+        //public async void AsyncConnectAndAdd()
+        //{
+        //    var data = ParserPDF();
+        //    var sql = @"INSERT INTO Demographics(year, born, died, arrival, departure)" +
+        //            "VALUES(@year, @born, @died, @arrival, @departure)";
+        //    string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;" +
+        //        "Username=postgres.hljapwtpzmqjovchyylz;" +
+        //        "Password=MM0yI98jmB7eQwDQ;" +
+        //        "Database=postgres";
+        //    await using var conn = new NpgsqlConnection(connString);
+        //    {
+        //        await conn.OpenAsync();
+        //        await Console.Out.WriteLineAsync($"postgre ver {conn.PostgreSqlVersion}");
+        //        try
+        //        {
+        //            await using var dataSource = NpgsqlDataSource.Create(connString);
+        //            foreach (var row in data)
+        //            {
+        //                await using var cmd = dataSource.CreateCommand(sql);
+        //                cmd.Parameters.AddWithValue("@year", row[0]);
+        //                cmd.Parameters.AddWithValue("@born", row[1]);
+        //                cmd.Parameters.AddWithValue("@died", row[2]);
+        //                cmd.Parameters.AddWithValue("@arrival", row[3]);
+        //                cmd.Parameters.AddWithValue("@departure", row[4]);
+        //                await cmd.ExecuteNonQueryAsync();               
+        //            }
+        //            Console.WriteLine("add data");
+        //        }
+        //        catch (NpgsqlException ex) { Console.WriteLine($"Error: {ex.Message}"); }
+        //    }
+        //}
+
+        public void ConnectAndAdd()
         {
-            Environment.SetEnvironmentVariable("URL", "https://hljapwtpzmqjovchyylz.supabase.co");
-            Environment.SetEnvironmentVariable("KEY", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhsamFwd3Rwem1xam92Y2h5eWx6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTk1NzMwMjksImV4cCI6MjAzNTE0OTAyOX0._I4a8CradEGzeMN7Lq_KWbDeayDbaCq0Ru2AoUQuHx0");
-            var url = Environment.GetEnvironmentVariable("URL");
-            var key = Environment.GetEnvironmentVariable("KEY");
-            var options = new Supabase.SupabaseOptions
+            List<List<int>> data = ParserPDF();
+            Console.WriteLine($"count rows {data.Count}");
+            //строка sql-запроса на добавление данных
+            string sql = @"INSERT INTO demographics(year, born, died, arrival, departure)" +
+                    "VALUES(@year, @born, @died, @arrival, @departure)";
+            //строка для соединения с БД
+            string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;" +
+                "Username=postgres.hljapwtpzmqjovchyylz;" +
+                "Password=MM0yI98jmB7eQwDQ;" +
+                "Database=postgres";
+            //установление соединения
+            using NpgsqlConnection conn = new NpgsqlConnection(connString);
             {
-                AutoConnectRealtime = true
-            };
-            var supabase = new Supabase.Client(url,key,options);
-            await supabase.InitializeAsync();
-            //var data = new List<Demographics>();
-            //var rows = ParserPDF();
-            //Console.WriteLine(rows.Count);
-            //foreach (var row in rows)
-            //{
-            //    Console.WriteLine("Connect and insert");
-            //    data.Add(new Demographics { Year = row[0], Born = row[1], Died = row[2], Arrival = row[3], Departure = row[4] });
-            //    Console.WriteLine($"Year = {row[0]}, Born = {row[1]}, Died = {row[2]}, Arrival = {row[3]}, Departure = {row[4]}");
-            //}
-            //await supabase.From<Demographics>().Insert(data);
+                //открываем соединение
+                conn.Open();
+                //версия сервера PostgreSQL
+                Console.WriteLine($"Postgre ver {conn.PostgreSqlVersion.ToString()}");
+                try
+                {
+                    //создание нового источника данных
+                    using var dataSource = NpgsqlDataSource.Create(connString);
+                    foreach (var row in data)
+                    {
+                        //создание команды
+                        using var cmd = dataSource.CreateCommand(sql);
+                        Console.WriteLine($"y={row[0]}, b={row[1]}, d={row[2]}, ar={row[3]}, de={row[4]}");
+                        //параметры команды и их значения
+                        cmd.Parameters.AddWithValue("@year", row[0]);
+                        cmd.Parameters.AddWithValue("@born", row[1]);
+                        cmd.Parameters.AddWithValue("@died", row[2]);
+                        cmd.Parameters.AddWithValue("@arrival", row[3]);
+                        cmd.Parameters.AddWithValue("@departure", row[4]);
+                        //выполнение команды
+                        cmd.ExecuteNonQuery();
+                    }
+                    Console.WriteLine("add data");
+                }
+                catch (NpgsqlException ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
         }
 
-        public static void ParserPDF()
+        public List<List<int>> ParserPDF()
         {
             List<List<int>> rows = new List<List<int>>();
             //список старых отчетов о демографии (и не только) в Татарстане
@@ -76,29 +139,24 @@ namespace Praktika
                     migration_split[i] = new Regex(@"([а-я])|(\s{2,})", RegexOptions.IgnoreCase).Replace(migration_split[i], "");
                 }
                 migration_split.RemoveAll(string.IsNullOrWhiteSpace);
-                //данные о прибывших и уехавших из региона (удаляем второе и четвертое значение, поскольку там данные в расчете на 1000 чел.)
+                //данные о прибывших и уехавших из региона
+                //(удаляем второе и четвертое значение, поскольку там данные в расчете на 1000 чел.)
                 List<string> list_arrival = new List<string>(migration_split[5].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
                 list_arrival.RemoveAt(1);
                 List<string> list_departure = new List<string>( migration_split[6].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
                 list_departure.RemoveAt(1);
                 List<int> row_data = new List<int>();
-                //возможно проблема в конверте
+                //добавление данных за каждый год общий список
                 for (var i = 0; i < 2; i++) 
                 {
-                    row_data.AddRange(new int[] { Convert.ToInt32(years[i]),
-                        Convert.ToInt32(list_born[i]), Convert.ToInt32(list_died[i]),
-                        Convert.ToInt32(list_arrival[i]), Convert.ToInt32(list_died[i]) });
+                    rows.Add(new List<int>((new int[] { Convert.ToInt32(years[i]), Convert.ToInt32(list_born[i]), Convert.ToInt32(list_died[i]),Convert.ToInt32(list_arrival[i]), Convert.ToInt32(list_departure[i]) })));                    
                 }
-                rows.Add(row_data);
             }
-            foreach (var row in rows) 
-            {
-                Console.WriteLine($"Year = {row[0]}, Born = {row[1]}, Died = {row[2]}, Arrival = {row[3]}, Departure = {row[4]}");
-            }
-            //return rows;
+            return rows;
         }
-
-        static void ParseHTML()
+        //парсер сайта с данными о рождаемости смертности,
+        //в дальнейшем переписать под другой ссайт и другие данные и вынести в другой файл
+        public void ParserHTML()
         {
             // Загрузите HTML-документ из файла или URL-адреса
             var htmlDocument = new HtmlWeb().Load("https://gogov.ru/natural-increase/rt");
@@ -156,24 +214,5 @@ namespace Praktika
                 }
             }
         }
-    }
-
-    [Supabase.Postgrest.Attributes.Table("Demographics")]
-    class Demographics : BaseModel
-    {
-        [PrimaryKey("Year")]
-        public int Year { get; set; }
-
-        [Supabase.Postgrest.Attributes.Column("Born")]
-        public int Born { get; set; }
-
-        [Supabase.Postgrest.Attributes.Column("Died")]
-        public int Died { get; set; }
-
-        [Supabase.Postgrest.Attributes.Column("Arrival")]
-        public int Arrival {  get; set; }
-
-        [Supabase.Postgrest.Attributes.Column("Departure")]
-        public int Departure {  get; set; }
     }
 }
