@@ -4,10 +4,7 @@ using iTextSharp.text.pdf.parser;
 //using Supabase.Postgrest.Attributes;
 //using Supabase.Postgrest.Models;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 using Npgsql;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 
@@ -15,15 +12,36 @@ namespace Praktika
 {
     class Parser 
     {
-        public static void Main()
+        async static Task Main()
         {
             Parser parser = new Parser();
-            //parser.AsyncConnectAndAdd();
-            parser.ConnectAndAdd();
+            //parser.ParserHTML();
+            //await parser.AsyncConnectAndAdd();
+            //parser.ConnectAndAdd();
+            var pathPDF = await parser.DownloadPDF();
+            var data = parser.ParserPDF(pathPDF);
+            foreach (var row in data) 
+            { 
+                foreach(var item in row) Console.WriteLine(item);
+            }
         }
-        /*попытка реализовать соединение и запись в асинхронноме режиме*/ 
 
-        //public async void AsyncConnectAndAdd()
+        public async Task<string> DownloadPDF()
+        {
+            string rosstat = "https://16.rosstat.gov.ru";
+            var Source = new HtmlWeb().Load(rosstat + "/naselenie#");
+            string pdfUrl = Source.DocumentNode
+                .SelectSingleNode("/html/body/main/section[2]/div/div/div/div/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/div/div[1]/a[@href]")
+                .GetAttributeValue("href", "null");
+            using var client = new HttpClient();
+            using var stream = await client.GetStreamAsync(rosstat + pdfUrl);
+            using var fileStream = new FileStream("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\doc.pdf", FileMode.OpenOrCreate);
+            await stream.CopyToAsync(fileStream);
+            return fileStream.Name;
+        }
+
+        /*попытка реализовать соединение и запись в асинхронноме режиме*/
+        //public async Task AsyncConnectAndAdd()
         //{
         //    var data = ParserPDF();
         //    var sql = @"INSERT INTO Demographics(year, born, died, arrival, departure)" +
@@ -47,7 +65,7 @@ namespace Praktika
         //                cmd.Parameters.AddWithValue("@died", row[2]);
         //                cmd.Parameters.AddWithValue("@arrival", row[3]);
         //                cmd.Parameters.AddWithValue("@departure", row[4]);
-        //                await cmd.ExecuteNonQueryAsync();               
+        //                await cmd.ExecuteNonQueryAsync();
         //            }
         //            Console.WriteLine("add data");
         //        }
@@ -55,102 +73,107 @@ namespace Praktika
         //    }
         //}
 
-        public void ConnectAndAdd()
-        {
-            List<List<int>> data = ParserPDF();
-            Console.WriteLine($"count rows {data.Count}");
-            //строка sql-запроса на добавление данных
-            string sql = @"INSERT INTO demographics(year, born, died, arrival, departure)" +
-                    "VALUES(@year, @born, @died, @arrival, @departure)";
-            //строка для соединения с БД
-            string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;" +
-                "Username=postgres.hljapwtpzmqjovchyylz;" +
-                "Password=MM0yI98jmB7eQwDQ;" +
-                "Database=postgres";
-            //установление соединения
-            using NpgsqlConnection conn = new NpgsqlConnection(connString);
-            {
-                //открываем соединение
-                conn.Open();
-                //версия сервера PostgreSQL
-                Console.WriteLine($"Postgre ver {conn.PostgreSqlVersion.ToString()}");
-                try
-                {
-                    //создание нового источника данных
-                    using var dataSource = NpgsqlDataSource.Create(connString);
-                    foreach (var row in data)
-                    {
-                        //создание команды
-                        using var cmd = dataSource.CreateCommand(sql);
-                        Console.WriteLine($"y={row[0]}, b={row[1]}, d={row[2]}, ar={row[3]}, de={row[4]}");
-                        //параметры команды и их значения
-                        cmd.Parameters.AddWithValue("@year", row[0]);
-                        cmd.Parameters.AddWithValue("@born", row[1]);
-                        cmd.Parameters.AddWithValue("@died", row[2]);
-                        cmd.Parameters.AddWithValue("@arrival", row[3]);
-                        cmd.Parameters.AddWithValue("@departure", row[4]);
-                        //выполнение команды
-                        cmd.ExecuteNonQuery();
-                    }
-                    Console.WriteLine("add data");
-                }
-                catch (NpgsqlException ex)
-                {
-                    Console.WriteLine($"Error: {ex.Message}");
-                }
-            }
-        }
+        /*public void ConnectAndAdd()
+        //{
+        //    List<List<int>> data = ParserPDF();
+        //    Console.WriteLine($"count rows {data.Count}");
+        //    //строка sql-запроса на добавление данных
+        //    string sql = @"INSERT INTO demographics(year, born, died, arrival, departure)" +
+        //            "VALUES(@year, @born, @died, @arrival, @departure)";
+        //    //строка для соединения с БД
+        //    string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;" +
+        //        "Username=postgres.hljapwtpzmqjovchyylz;" +
+        //        "Password=MM0yI98jmB7eQwDQ;" +
+        //        "Database=postgres";
+        //    //установление соединения
+        //    using NpgsqlConnection conn = new NpgsqlConnection(connString);
+        //    {
+        //        //открываем соединение
+        //        conn.Open();
+        //        //версия сервера PostgreSQL
+        //        Console.WriteLine($"Postgre ver {conn.PostgreSqlVersion.ToString()}");
+        //        try
+        //        {
+        //            //создание нового источника данных
+        //            using var dataSource = NpgsqlDataSource.Create(connString);
+        //            foreach (var row in data)
+        //            {
+        //                //создание команды
+        //                using var cmd = dataSource.CreateCommand(sql);
+        //                Console.WriteLine($"y={row[0]}, b={row[1]}, d={row[2]}, ar={row[3]}, de={row[4]}");
+        //                //параметры команды и их значения
+        //                cmd.Parameters.AddWithValue("@year", row[0]);
+        //                cmd.Parameters.AddWithValue("@born", row[1]);
+        //                cmd.Parameters.AddWithValue("@died", row[2]);
+        //                cmd.Parameters.AddWithValue("@arrival", row[3]);
+        //                cmd.Parameters.AddWithValue("@departure", row[4]);
+        //                //выполнение команды
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //            Console.WriteLine("add data");
+        //        }
+        //        catch (NpgsqlException ex)
+        //        {
+        //            Console.WriteLine($"Error: {ex.Message}");
+        //        }
+        //    }
+        }*/
 
-        public List<List<int>> ParserPDF()
+        public List<List<int>> ParserPDF(string path)
         {
             List<List<int>> rows = new List<List<int>>();
-            //список старых отчетов о демографии (и не только) в Татарстане
-            PdfReader[] arr_pdf = { new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2019-2018.pdf"),
-                new PdfReader("C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\доклад 2021-2020.pdf") };
-            //перебор списка
-            foreach (PdfReader pdf in arr_pdf)
+            //преобразование из пдф в строку
+            PdfReader pdf = new PdfReader(path);
+            string text = "";
+            for (var i = 1; i <= pdf.NumberOfPages; ++i)
             {
-                //преобразование из пдф в строку
-                string text = "";
-                for (var i = 1; i <= pdf.NumberOfPages; ++i)
-                {
-                    SimpleTextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
-                    text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
-                }
-                pdf.Close();
-                //получение из отчета данных о рождаемости и смертности
-                string demographics = text.Substring(text.LastIndexOf("ДЕМОГРАФИЯ"), text.IndexOf("     в том числе детей") - text.LastIndexOf("ДЕМОГРАФИЯ"));
-                List<string> demographics_split = new List<string>(demographics.Split('\n', StringSplitOptions.RemoveEmptyEntries));
-                demographics_split.RemoveAll(string.IsNullOrWhiteSpace);
-                //сами данные год, родилось, умеро (используются списки, ибо в отчетах данные за 2 года)
-                string[] years = new Regex(@"г\.", RegexOptions.Compiled).Replace(demographics_split[4], "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                List<string> list_born = new List<string>(demographics_split[10].Split(' ', 4).SkipLast(1).Skip(1));
-                List<string> list_died = new List<string>(demographics_split[11].Split(' ', 4).SkipLast(1).Skip(1));
-                //получение данных об миграции
-                string migration = text.Substring(text.IndexOf("Миграция населения"), text.IndexOf("с другими территориями") - text.IndexOf("Миграция населения"));
-                List<string> migration_split = new List<string>(migration.Split(new char[] { '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
-                migration_split.RemoveAll(string.IsNullOrWhiteSpace);
-                //костыль не забыть убрать
-                /**/migration_split.Remove("1)");/**/
-                //костыль не забыть убрать
-                //убираем все слова и уменьшаем размер списка
-                for (var i = 0; i < migration_split.Count; i++)
-                {
-                    migration_split[i] = new Regex(@"([а-я])|(\s{2,})", RegexOptions.IgnoreCase).Replace(migration_split[i], "");
-                }
-                migration_split.RemoveAll(string.IsNullOrWhiteSpace);
-                //данные о прибывших и уехавших из региона
-                //(удаляем второе и четвертое значение, поскольку там данные в расчете на 1000 чел.)
-                List<string> list_arrival = new List<string>(migration_split[5].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
-                list_arrival.RemoveAt(1);
-                List<string> list_departure = new List<string>( migration_split[6].Split(' ',4, StringSplitOptions.RemoveEmptyEntries).SkipLast(1));
-                list_departure.RemoveAt(1);
-                List<int> row_data = new List<int>();
-                //добавление данных за каждый год общий список
-                for (var i = 0; i < 2; i++) 
-                {
-                    rows.Add(new List<int>((new int[] { Convert.ToInt32(years[i]), Convert.ToInt32(list_born[i]), Convert.ToInt32(list_died[i]),Convert.ToInt32(list_arrival[i]), Convert.ToInt32(list_departure[i]) })));                    
-                }
+                SimpleTextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
+                text += PdfTextExtractor.GetTextFromPage(pdf, i, strategy);
+            }
+            pdf.Close();
+            //получение из отчета данных о рождаемости и смертности
+            string demographics = text.Substring(text.IndexOf(Regex.Match(text, @"\d{4}г\. \d{4}г\.").Value), text.IndexOf("     в том числе детей") - text.IndexOf(Regex.Match(text, @"\d{4}г\. \d{4}г\.").Value));
+            List<string> demographicsSplit = new List<string>(demographics.Split('\n', StringSplitOptions.RemoveEmptyEntries));
+            demographicsSplit.RemoveAll(string.IsNullOrWhiteSpace);
+            //сами данные год, родилось, умеро (используются списки, ибо в отчетах данные за 2 года)
+            List<string> years = new Regex(@"г\.", RegexOptions.Compiled)
+                .Replace(demographicsSplit[demographicsSplit.IndexOf(Regex.Match(demographics, @"\d{4}г\. \d{4}г\.").Value)], "")
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            string bornString = "";
+            string diedString = "";
+            foreach (var item in demographicsSplit)
+            {
+                if (Regex.IsMatch(item, @"Родившихся"))
+                    bornString = item;
+                if (Regex.IsMatch(item, @"Умерших"))
+                    diedString = item;
+            }          
+            List<string> listBorn = new List<string>(demographicsSplit[demographicsSplit.IndexOf(bornString)].Split(' ', 4).SkipLast(1).Skip(1));
+            List<string> listDied = new List<string>(demographicsSplit[demographicsSplit.IndexOf(diedString)].Split(' ', 4).SkipLast(1).Skip(1));
+            //получение данных об миграции
+            string migration = text.Substring(text.IndexOf("Миграция – всего "), text.IndexOf(Regex.Match(text,@"миграционный прирост").Value) - text.IndexOf("Миграция – всего "));
+            List<string> migrationSplit = new List<string>(migration.Split(new char[] { '\n', '\t' }, StringSplitOptions.RemoveEmptyEntries));
+            migrationSplit.RemoveAll(string.IsNullOrWhiteSpace);
+            string departureStr = "";
+            string arrivalStr = "";
+            foreach (var item in migrationSplit) 
+            { 
+                if(Regex.IsMatch(item, @"число прибытий"))
+                    arrivalStr = item;
+                if (Regex.IsMatch(item, @"число выбытий"))
+                    departureStr = item;
+            }
+            //данные о прибывших и уехавших из региона
+            List<string> listArrival = new Regex(@"([а-я])|(\d+,\d+)",RegexOptions.IgnoreCase)
+                .Replace(migrationSplit[migrationSplit.IndexOf(arrivalStr)], "")
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> listDeparture = new Regex(@"([а-я])|(\d+,\d+)", RegexOptions.IgnoreCase)
+                .Replace(migrationSplit[migrationSplit.IndexOf(departureStr)], "")
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            //добавление данных за каждый год общий список
+            for (var i = 0; i < 2; i++)
+            {
+                rows.Add(new List<int>((new int[] { Convert.ToInt32(years[i]), Convert.ToInt32(listBorn[i]), Convert.ToInt32(listDied[i]), Convert.ToInt32(listArrival[i]), Convert.ToInt32(listDeparture[i]) })));
             }
             return rows;
         }
