@@ -2314,9 +2314,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
-      "projectName": "parser",
-      "projectPath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\parser.csproj",
+      "projectUniqueName": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\ParserPDF.csproj",
+      "projectName": "ParserPDF",
+      "projectPath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\ParserPDF.csproj",
       "packagesPath": "C:\\Users\\эхо\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\эхо\\source\\repos\\demographic_database_of_Tatarstan\\parser\\obj\\",
       "projectStyle": "PackageReference",
