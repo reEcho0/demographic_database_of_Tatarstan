@@ -3,13 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\ParserPDF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}|..\\Web\\Web.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\web\\webapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}|..\\Web\\Web.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\web\\postgrescontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}|..\\Web\\Web.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\web\\html\\web.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\models\\appcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,46 +22,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PostgresContext.cs",
-              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\PostgresContext.cs",
-              "RelativeDocumentMoniker": "..\\Web\\PostgresContext.cs",
-              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\PostgresContext.cs",
-              "RelativeToolTip": "..\\Web\\PostgresContext.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAiwAYAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-13T09:52:43.957Z",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "..\\WebAppMVC\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "..\\WebAppMVC\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-18T15:05:26.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WebApp.cs",
-              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\WebApp.cs",
-              "RelativeDocumentMoniker": "..\\Web\\WebApp.cs",
-              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\WebApp.cs",
-              "RelativeToolTip": "..\\Web\\WebApp.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "..\\WebAppMVC\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "..\\WebAppMVC\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-12T09:17:25.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-18T14:53:29.484Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Program.cs",
+              "RelativeDocumentMoniker": "..\\WebAppMVC\\Program.cs",
+              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Program.cs",
+              "RelativeToolTip": "..\\WebAppMVC\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T08:57:04.22Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "web.html",
-              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\html\\web.html",
-              "RelativeDocumentMoniker": "..\\Web\\html\\web.html",
-              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\Web\\html\\web.html",
-              "RelativeToolTip": "..\\Web\\html\\web.html",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-07-12T09:16:29.381Z",
-              "EditorCaption": ""
+              "Title": "AppContext.cs",
+              "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Models\\AppContext.cs",
+              "RelativeDocumentMoniker": "..\\WebAppMVC\\Models\\AppContext.cs",
+              "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Models\\AppContext.cs",
+              "RelativeToolTip": "..\\WebAppMVC\\Models\\AppContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T08:54:04.909Z"
             }
           ]
         }

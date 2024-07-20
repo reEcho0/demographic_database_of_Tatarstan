@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WebAppMVC.Models.Demographics>
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Демографические показатели Татарстана</h1>
+   @*  <table>
+        <tr>
+            <th>Год</th>
+            <th>Родилось</th>
+            <th>Умерло</th>
+            <th>Прибыло</th>
+            <th>Выбыло</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Year</td>
+                <td>@item.Born</td>
+                <td>@item.Died</td>
+                <td>@item.Arrival</td>
+                <td>@item.Departure</td>
+            </tr>
+        }
+    </table> *@
+    <script>
+        let list = @ViewBag.Data;
+        for (let item in list) {
+            console.log(item)
+        }
+    </script>
+    <canvas id="myChart"></canvas>
+@*     @foreach (var item in Model)
+    {
+        <script>
+            var population = {
+                labels: [@item.Year],
+                datasets: [
+                    {
+                        label: 'Родилось',
+                        data: [@item.Born],
+                        backgroundColor: ['rgba(255,0,0,0.5)'],
+                        borderColor: ['rgba(255,0,0,1)'],
+                    }, {
+                        label: 'Умерло',
+                        data: [@item.Died],
+                        backgroundColor: ['rgba(0,0,255,0.5)'],
+                        borderColor: ['rgba(0,0,255,1)'],
+                    }
+                ]
+            };
+
+            document.addEventListener('DOMContentLoaded', function (event) {
+                var context = document.getElementById('myChart').getContext('2d');
+                var clientsChart = new Chart(
+                    context, {
+                    type: 'bar',
+                    data: population
+                }
+                );
+            });
+        </script>
+    } *@
+
+</body>

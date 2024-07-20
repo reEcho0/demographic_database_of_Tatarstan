@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParserPDF", "ParserPDF.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkDB", "..\WorkDB\WorkDB.csproj", "{C7863F51-0A46-4D86-8648-FBAA81FA1B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "..\Web\Web.csproj", "{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppMVC", "..\WebAppMVC\WebAppMVC.csproj", "{4FE88CDE-7998-444A-91A4-11A23E324017}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{C7863F51-0A46-4D86-8648-FBAA81FA1B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7863F51-0A46-4D86-8648-FBAA81FA1B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7863F51-0A46-4D86-8648-FBAA81FA1B69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C0A9B7AE-05DF-4D24-B109-EB50F9B680EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FE88CDE-7998-444A-91A4-11A23E324017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FE88CDE-7998-444A-91A4-11A23E324017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FE88CDE-7998-444A-91A4-11A23E324017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FE88CDE-7998-444A-91A4-11A23E324017}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
