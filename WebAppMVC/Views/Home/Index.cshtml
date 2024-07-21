@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Демографические показатели Татарстана</h1>
-   @*  <table>
+    <table>
         <tr>
             <th>Год</th>
             <th>Родилось</th>
@@ -24,13 +24,13 @@
                 <td>@item.Departure</td>
             </tr>
         }
-    </table> *@
-    <script>
+    </table>
+   @*  <script>
         let list = @ViewBag.Data;
         for (let item in list) {
             console.log(item)
         }
-    </script>
+    </script> *@
     <canvas id="myChart"></canvas>
 @*     @foreach (var item in Model)
     {

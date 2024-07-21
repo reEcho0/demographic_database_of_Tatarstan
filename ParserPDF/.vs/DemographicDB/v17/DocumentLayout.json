@@ -3,10 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\ParserPDF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4FE88CDE-7998-444A-91A4-11A23E324017}|..\\WebAppMVC\\WebAppMVC.csproj|c:\\users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_tatarstan\\webappmvc\\models\\appcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -22,32 +22,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "..\\WebAppMVC\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "..\\WebAppMVC\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAATAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-07-18T15:05:26.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "..\\WebAppMVC\\Controllers\\HomeController.cs",
               "ToolTip": "C:\\Users\\\u044D\u0445\u043E\\source\\repos\\demographic_database_of_Tatarstan\\WebAppMVC\\Controllers\\HomeController.cs",
               "RelativeToolTip": "..\\WebAppMVC\\Controllers\\HomeController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAxAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABgAAAA0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-18T14:53:29.484Z"
+              "WhenOpened": "2024-07-18T14:53:29.484Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

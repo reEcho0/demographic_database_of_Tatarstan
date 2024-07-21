@@ -15,15 +15,15 @@ namespace WebAppMVC.Controllers
             this.db = context;
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await db.Demographics.ToListAsync());
-        //}
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewBag.Data =  Json(db.Demographics);
-            return View();
+            return View(await db.Demographics.ToListAsync());
         }
+
+        //public IActionResult Index()
+        //{
+        //    ViewBag.Data =  Json(db.Demographics);
+        //    return View();
+        //}
     }
 }
