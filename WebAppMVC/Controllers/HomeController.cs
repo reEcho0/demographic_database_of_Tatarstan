@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using Npgsql.EntityFrameworkCore;
 using WebAppMVC.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
+
 
 namespace WebAppMVC.Controllers
 {
@@ -22,8 +20,10 @@ namespace WebAppMVC.Controllers
 
         //public IActionResult Index()
         //{
-        //    ViewBag.Data =  Json(db.Demographics);
-        //    return View();
+        //    var dataset = db.Demographics.ToList();
+        //    ViewBag.Label = dataset.Select(prop => new { label = prop.Year }).ToList();
+        //    ViewBag.Born = dataset.Select(prop => new { born = prop.Born }).ToList();
+        //    return View(dataset);
         //}
     }
 }

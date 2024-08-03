@@ -1,4 +1,11 @@
 ﻿@model IEnumerable<WebAppMVC.Models.Demographics>
+@{
+    var year = Json.Serialize(Model.Select(y => y.Year).ToList());
+    var born = Json.Serialize(Model.Select(b => b.Born).ToList());
+    var died = Json.Serialize(Model.Select(d => d.Died).ToList());
+    var arrival = Json.Serialize(Model.Select(a => a.Arrival).ToList());
+    var departure = Json.Serialize(Model.Select(d => d.Departure).ToList());
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,43 +32,103 @@
             </tr>
         }
     </table>
-   @*  <script>
-        let list = @ViewBag.Data;
-        for (let item in list) {
-            console.log(item)
-        }
-    </script> *@
-    <canvas id="myChart"></canvas>
-@*     @foreach (var item in Model)
-    {
-        <script>
-            var population = {
-                labels: [@item.Year],
-                datasets: [
-                    {
-                        label: 'Родилось',
-                        data: [@item.Born],
-                        backgroundColor: ['rgba(255,0,0,0.5)'],
-                        borderColor: ['rgba(255,0,0,1)'],
-                    }, {
-                        label: 'Умерло',
-                        data: [@item.Died],
-                        backgroundColor: ['rgba(0,0,255,0.5)'],
-                        borderColor: ['rgba(0,0,255,1)'],
-                    }
-                ]
-            };
-
-            document.addEventListener('DOMContentLoaded', function (event) {
-                var context = document.getElementById('myChart').getContext('2d');
-                var clientsChart = new Chart(
-                    context, {
-                    type: 'bar',
-                    data: population
+    <canvas id="population"></canvas>
+    <script>
+        var born = @Html.Raw(born);
+        var died = @Html.Raw(died);
+        var population = {
+            labels: @Html.Raw(year),
+            datasets: [
+                {
+                    label: 'Родилось',
+                    data: born,
+                    backgroundColor: ['rgba(255,0,0,0.5)'],
+                    borderColor: ['rgba(255,0,0,1)'],
+                }, {
+                    label: 'Умерло',
+                    data: died,
+                    backgroundColor: ['rgba(0,0,255,0.5)'],
+                    borderColor: ['rgba(0,0,255,1)'],
+                }, {
+                    label: 'Прирост/убыль',
+                    data: born.map((item, idx) => item - died[idx]),
+                    backgroundColor: ['rgba(0,255,0,0.5)'],
+                    borderColor: ['rgba(0,255,0,1)']
                 }
-                );
-            });
-        </script>
-    } *@
+            ]
+        };
 
+        document.addEventListener('DOMContentLoaded', function (event) {
+            var context = document.getElementById('population').getContext('2d');
+            var clientsChart = new Chart(
+                context, {
+                type: 'bar',
+                data: population,
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Естественный прирост/убыль населения в Татарстане',
+                            color: 'black',
+                            font: {
+                                weight: 'bold',
+                                size: 20
+                            }
+                        }
+                    }
+                }
+            }
+            );
+        });
+    </script>
+
+    <canvas id="migration"></canvas>
+    <script>
+        var arrival = @Html.Raw(arrival);
+        var departure = @Html.Raw(departure);
+        var migration = {
+            labels: @Html.Raw(year),
+            datasets: [
+                {
+                    label: 'Прибыло',
+                    data: arrival,
+                    backgroundColor: ['rgba(255,0,0,0.5)'],
+                    borderColor: ['rgba(255,0,0,1)'],
+                }, {
+                    label: 'Выбыло',
+                    data: departure,
+                    backgroundColor: ['rgba(0,0,255,0.5)'],
+                    borderColor: ['rgba(0,0,255,1)'],
+                }, {
+                    label: 'Прирост/убыль',
+                    data: arrival.map((item, idx) => item - departure[idx]),
+                    backgroundColor: ['rgba(0,255,0,0.5)'],
+                    borderColor: ['rgba(0,255,0,1)']
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function (event) {
+            var context = document.getElementById('migration').getContext('2d');
+            var clientsChart = new Chart(
+                context, {
+                type: 'bar',
+                data: migration,
+                options: {
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Миграционный прирост/убыль населения в Татарстане',
+                            color: 'black',
+                            font: {
+                                weight: 'bold',
+                                size: 20
+                            }
+                        }
+                    }
+                }
+            }
+            );
+        });
+    </script>
 </body>
