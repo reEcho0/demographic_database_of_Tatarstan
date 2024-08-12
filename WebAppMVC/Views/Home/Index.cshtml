@@ -6,6 +6,7 @@
     var arrival = Json.Serialize(Model.Select(a => a.Arrival).ToList());
     var departure = Json.Serialize(Model.Select(d => d.Departure).ToList());
 }
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 </head>
 <body>
     <h1>Демографические показатели Татарстана</h1>
-    <table>
+@*     <table>
         <tr>
             <th>Год</th>
             <th>Родилось</th>
@@ -31,104 +32,173 @@
                 <td>@item.Departure</td>
             </tr>
         }
-    </table>
-    <canvas id="population"></canvas>
-    <script>
-        var born = @Html.Raw(born);
-        var died = @Html.Raw(died);
-        var population = {
-            labels: @Html.Raw(year),
-            datasets: [
-                {
-                    label: 'Родилось',
-                    data: born,
-                    backgroundColor: ['rgba(255,0,0,0.5)'],
-                    borderColor: ['rgba(255,0,0,1)'],
-                }, {
-                    label: 'Умерло',
-                    data: died,
-                    backgroundColor: ['rgba(0,0,255,0.5)'],
-                    borderColor: ['rgba(0,0,255,1)'],
-                }, {
-                    label: 'Прирост/убыль',
-                    data: born.map((item, idx) => item - died[idx]),
-                    backgroundColor: ['rgba(0,255,0,0.5)'],
-                    borderColor: ['rgba(0,255,0,1)']
-                }
-            ]
-        };
+    </table> *@
 
-        document.addEventListener('DOMContentLoaded', function (event) {
-            var context = document.getElementById('population').getContext('2d');
-            var clientsChart = new Chart(
-                context, {
-                type: 'bar',
-                data: population,
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Естественный прирост/убыль населения в Татарстане',
-                            color: 'black',
-                            font: {
-                                weight: 'bold',
-                                size: 20
+    <div class="customSelect">
+        <style>
+            .customSelect select {
+                background-color: #fff;
+                color: black;
+                padding: 10px;
+                width: 20%;
+                border: none;
+                font-size: 90%;
+                box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+                -webkit-appearance: button;
+                appearance: button;
+                outline: none;
+            }
+
+            .customSelect::before {
+                content: "\f13a";
+                font-family: FontAwesome;
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 20%;
+                height: 100%;
+                text-align: center;
+                font-size: 90%;
+                line-height: 45px;
+                color: rgba(255, 255, 255, 0.5);
+                background-color: rgba(255, 255, 255, 0.1);
+                pointer-events: none;
+            }
+
+            .customSelect:hover::before {
+                color: rgba(255, 255, 255, 0.6);
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+            .customSelect select option {
+                padding: 30px;
+            }
+        </style>
+        <select onchange="changed(this.value)" class="select-css">
+            <option value="migrationChart" selected>Популяция</option>
+            <option value="populationChart">Миграция</option>
+        </select>
+    </div>
+
+    <div class="populationChart">
+        <canvas id="population"></canvas>
+        <script>
+            var born = @Html.Raw(born);
+            var died = @Html.Raw(died);
+            var population = {
+                labels: @Html.Raw(year),
+                datasets: [
+                    {
+                        label: 'Родилось',
+                        data: born,
+                        backgroundColor: ['rgba(255,0,0,0.5)'],
+                        borderColor: ['rgba(255,0,0,1)'],
+                    }, {
+                        label: 'Умерло',
+                        data: died,
+                        backgroundColor: ['rgba(0,0,255,0.5)'],
+                        borderColor: ['rgba(0,0,255,1)'],
+                    }, {
+                        label: 'Прирост/убыль',
+                        data: born.map((item, idx) => item - died[idx]),
+                        backgroundColor: ['rgba(0,255,0,0.5)'],
+                        borderColor: ['rgba(0,255,0,1)']
+                    }
+                ]
+            };
+
+            document.addEventListener('DOMContentLoaded', function (event) {
+                var context = document.getElementById('population').getContext('2d');
+                var clientsChart = new Chart(
+                    context, {
+                    type: 'bar',
+                    data: population,
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Естественный прирост/убыль населения в Татарстане',
+                                color: 'black',
+                                font: {
+                                    weight: 'bold',
+                                    size: 20
+                                }
                             }
                         }
                     }
                 }
+                );
+            });
+        </script>
+    </div>
+
+    <div class="migrationChart">
+        <style>
+            .migrationChart {
+                display: none;
             }
-            );
-        });
-    </script>
+        </style>
+        <canvas id="migration"></canvas>
+        <script>
+            var arrival = @Html.Raw(arrival);
+            var departure = @Html.Raw(departure);
+            var migration = {
+                labels: @Html.Raw(year),
+                datasets: [
+                    {
+                        label: 'Прибыло',
+                        data: arrival,
+                        backgroundColor: ['rgba(255,0,0,0.5)'],
+                        borderColor: ['rgba(255,0,0,1)'],
+                    }, {
+                        label: 'Выбыло',
+                        data: departure,
+                        backgroundColor: ['rgba(0,0,255,0.5)'],
+                        borderColor: ['rgba(0,0,255,1)'],
+                    }, {
+                        label: 'Прирост/убыль',
+                        data: arrival.map((item, idx) => item - departure[idx]),
+                        backgroundColor: ['rgba(0,255,0,0.5)'],
+                        borderColor: ['rgba(0,255,0,1)']
+                    }
+                ]
+            };
 
-    <canvas id="migration"></canvas>
-    <script>
-        var arrival = @Html.Raw(arrival);
-        var departure = @Html.Raw(departure);
-        var migration = {
-            labels: @Html.Raw(year),
-            datasets: [
-                {
-                    label: 'Прибыло',
-                    data: arrival,
-                    backgroundColor: ['rgba(255,0,0,0.5)'],
-                    borderColor: ['rgba(255,0,0,1)'],
-                }, {
-                    label: 'Выбыло',
-                    data: departure,
-                    backgroundColor: ['rgba(0,0,255,0.5)'],
-                    borderColor: ['rgba(0,0,255,1)'],
-                }, {
-                    label: 'Прирост/убыль',
-                    data: arrival.map((item, idx) => item - departure[idx]),
-                    backgroundColor: ['rgba(0,255,0,0.5)'],
-                    borderColor: ['rgba(0,255,0,1)']
-                }
-            ]
-        };
-
-        document.addEventListener('DOMContentLoaded', function (event) {
-            var context = document.getElementById('migration').getContext('2d');
-            var clientsChart = new Chart(
-                context, {
-                type: 'bar',
-                data: migration,
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Миграционный прирост/убыль населения в Татарстане',
-                            color: 'black',
-                            font: {
-                                weight: 'bold',
-                                size: 20
+            document.addEventListener('DOMContentLoaded', function (event) {
+                var context = document.getElementById('migration').getContext('2d');
+                var clientsChart = new Chart(
+                    context, {
+                    type: 'bar',
+                    data: migration,
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Миграционный прирост/убыль населения в Татарстане',
+                                color: 'black',
+                                font: {
+                                    weight: 'bold',
+                                    size: 20
+                                }
                             }
                         }
                     }
                 }
+                );
+            });
+        </script>
+    </div>
+
+    <script>
+        function changed(selectedValue) {
+            if (selectedValue == "migrationChart") {
+                document.getElementsByClassName('migrationChart')[0].style.display = "none";
+                document.getElementsByClassName('populationChart')[0].style.display = "block";
             }
-            );
-        });
+            else {
+                document.getElementsByClassName('populationChart')[0].style.display = "none";
+                document.getElementsByClassName('migrationChart')[0].style.display = "block";
+            }
+        };
     </script>
 </body>

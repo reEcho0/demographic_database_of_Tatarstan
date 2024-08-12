@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ParserPDF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4256345736856597dd620e4ef262be41e72e4e0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9ddfbf80054f799f93ff10792af23eb201dc5fe")]
 [assembly: System.Reflection.AssemblyProductAttribute("ParserPDF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ParserPDF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
