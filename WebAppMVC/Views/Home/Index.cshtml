@@ -5,6 +5,7 @@
     var died = Json.Serialize(Model.Select(d => d.Died).ToList());
     var arrival = Json.Serialize(Model.Select(a => a.Arrival).ToList());
     var departure = Json.Serialize(Model.Select(d => d.Departure).ToList());
+    var lastUpdate = Json.Serialize(Model.Select(d => d.LastUpdate).TakeLast(1));
 }
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@
             </tr>
         }
     </table> *@
-
+    <h2>Последнее обновление данных: @Html.Raw(lastUpdate.ToString())</h2>
     <div class="customSelect">
         <style>
             .customSelect select {
@@ -188,6 +189,7 @@
             });
         </script>
     </div>
+
 
     <script>
         function changed(selectedValue) {

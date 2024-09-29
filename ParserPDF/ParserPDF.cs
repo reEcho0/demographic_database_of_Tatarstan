@@ -8,25 +8,35 @@ namespace DemographicDB
 {
     public class ParserPDF 
     {
-        public static void Main()
+        public static async Task Main()
         {
-            //ParserPDF parser = new ParserPDF();
-            //string path = await parser.DownloadPDF();
-            //var data = parser.Parser(path);
-            //parser.DeletePDF(path);
+            ParserPDF parser = new ParserPDF();
+            string path = await parser.DownloadPDF();
+            var data = parser.Parser(path);
+            foreach (var item in data) 
+            {
+                Console.WriteLine(item[0]);
+            }
+            parser.DeletePDF(path);
         }
+
         public async Task<List<List<int>>> Work()
         {
             ParserPDF parser = new ParserPDF();
             var pathPDF = await parser.DownloadPDF();
             var data = parser.Parser(pathPDF);
-            //foreach (var row in data) 
-            //{ 
-            //    foreach(var item in row) Console.WriteLine(item);
-            //}
             parser.DeletePDF(pathPDF);
             return data;
         }
+
+        //public List<List<int>> Work()
+        //{
+        //    ParserPDF parser = new ParserPDF();
+        //    var pathPDF = parser.DownloadPDF();
+        //    var data = parser.Parser(pathPDF.Result);
+        //    parser.DeletePDF(pathPDF.Result);
+        //    return data;
+        //}
 
         public async Task<string> DownloadPDF()
         {

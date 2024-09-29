@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Npgsql.EntityFrameworkCore;
+using WebAppMVC;
+using WebAppMVC.Controllers;
 using WebAppMVC.Models;
-using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +11,13 @@ builder.Services.AddDbContext<ApplicationContext>(options => options.UseNpgsql(c
 
 builder.Services.AddControllersWithViews();
 
+//builder.Services.AddHostedService<ConsumeScopedServiceHostedService>();
+//builder.Services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
+
 var app = builder.Build();
-
-
 
 app.MapDefaultControllerRoute();
 
 app.Run();
+
 

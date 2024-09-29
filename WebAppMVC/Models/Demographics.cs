@@ -11,6 +11,8 @@ namespace WebAppMVC.Models
         public int Arrival { get; set; }
         public int Departure { get; set; }
 
+        public DateTime LastUpdate { get; set; }
+
     }
 
     
