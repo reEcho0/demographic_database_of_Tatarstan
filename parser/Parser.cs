@@ -65,7 +65,7 @@ namespace Praktika
             //строка для соединения с БД
             string connString = "Host=aws-0-eu-central-1.pooler.supabase.com;" +
                 "Username=postgres.hljapwtpzmqjovchyylz;" +
-                "Password=MM0yI98jmB7eQwDQ;" +
+                "Password=***;" +
                 "Database=postgres";
             //установление соединения
             using NpgsqlConnection conn = new NpgsqlConnection(connString);
@@ -216,3 +216,4 @@ namespace Praktika
         }
     }
 }
+
